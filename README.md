@@ -1,4 +1,4 @@
 ### TODO
 
 
-![Alt text](static/screenshot.png?raw=true "Optional Title")
+![Alt text](https://github.com/imMica/sweng861_course_project/blob/main/static/screenshot.PNG)
