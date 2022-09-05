@@ -1,6 +1,6 @@
 ### TODO
 
-![Alt text](static/screenshot.png?raw=true "Optional Title")
+![Alt text](https://github.com/imMica/sweng861_course_project/blob/main/static/screenshot.PNG)
 
 Option 1- You will develop a program implementing a Web Service that will provide the end-user with the functionality to inquire about a song or a singer. A user may input a song title/singer name. This can be a command line or a user interface. The program will output information regarding the input. If a song title, then the output may include: singer name, composer name, date of release, lyrics, etc.
 
@@ -21,3 +21,4 @@ Resources:
 - https://mui.com/
 - https://create-react-app.dev/docs/getting-started/
 - https://expressjs.com/en/starter/hello-world.html
+
