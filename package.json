@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "api": "nodemon index.js",
-    "start": ".client/cousrse_project_react/src/index.js"
+    "server": "nodemon index.js",
+    "client": "cd client/course_project_react && npm run start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
     "@emotion/styled": "^11.10.4",
     "@mui/material": "^5.10.3",
     "axios": "^0.27.2",
+    "concurrently": "^7.4.0",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "nodemon": "^2.0.19"
