@@ -7,7 +7,9 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon index.js",
-    "client": "cd client/course_project_react && npm run start",
+    "client": "npm run start --prefix client/course_project_react",
+    "install-server": "npm install",
+    "install-client": "npm install --prefix client/course_project_react",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
@@ -21,9 +23,6 @@
   },
   "homepage": "https://github.com/imMica/sweng861_course_project#readme",
   "dependencies": {
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
-    "@mui/material": "^5.10.3",
     "axios": "^0.27.2",
     "concurrently": "^7.4.0",
     "dotenv": "^16.0.2",
