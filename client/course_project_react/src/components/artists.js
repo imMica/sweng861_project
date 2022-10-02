@@ -7,15 +7,26 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import { AccountCircleRounded } from '@mui/icons-material';
 
+/**
+ * Component for artist list
+ * 
+ * @param {obj} artistResults 
+ * @returns 
+ */
 export function ArtistList({ artistResults }) {
 
+    //list div style
     const styles = {
         height: "70vh",
         overflow: 'auto',
     }
 
+    const pagination_styles = {
+        "padding-top": "20px",
+    }
+
+    //get img avatar
     const getVisual = (data) => {
-        console.log(data)
         if(data.visuals.avatarImage == null){
             return <AccountCircleRounded/>
         }
@@ -27,11 +38,12 @@ export function ArtistList({ artistResults }) {
         return <AccountCircleRounded/>
     }
 
+    //for each arists, create an item component
     let items = ''
     items = artistResults.map((item, index) => {
         let avatar = getVisual(item.data)
         let artist = item.data.profile.name
-        return  <div>
+        return  <div key={item.data.uri}>
                     <ListItem>
                         <ListItemAvatar>
                             {avatar}
@@ -44,13 +56,10 @@ export function ArtistList({ artistResults }) {
                 </div>
     })
 
+    //return artist list component
     return (
-        <div>
-            <h3>Artists</h3>
-            <List sx={{ width: '100%', bgcolor: 'background.paper' }} style={styles}>
-                {items}
-            </List>
-        </div>
-
+        <List sx={{ width: '100%', bgcolor: 'background.paper' }} style={styles}>
+            {items}
+        </List>
     );
 }

@@ -8,6 +8,10 @@ const darkTheme = createTheme({
 	},
 });
 
+/**
+ * 
+ * @returns Root component
+ */
 function App() {
 	return (
 		<ThemeProvider theme={darkTheme}>

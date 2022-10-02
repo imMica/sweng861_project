@@ -15,11 +15,13 @@ import Avatar from '@mui/material/Avatar';
  */
 export function TrackList({ trackResults }) {
 
+    //set col div style
     const styles = {
         height: "70vh",
         overflow: 'auto',
     }
 
+    //get artists name
     const getArtist = (data) => {
         if(data.artists){
             let artists = data.artists.items;
@@ -28,6 +30,7 @@ export function TrackList({ trackResults }) {
         return 'None'
     }
 
+    //get album track img cover
     const getCoverArt = (data) => {
         if(data.albumOfTrack){
             let cover = data.albumOfTrack.coverArt.sources;
@@ -36,10 +39,10 @@ export function TrackList({ trackResults }) {
         return 'None'
     }
 
+    //get song duration
     const getDuration = (data) => {
         if(data.duration.totalMilliseconds){
             let millis = data.duration.totalMilliseconds
-            console.log(millis)
             let minutes = Math.floor(millis/60000)
             let seconds = millis % 60000 //left over
             seconds = (seconds/1000).toFixed(0)
@@ -48,41 +51,42 @@ export function TrackList({ trackResults }) {
         return '0:00'
     }
 
-    let items = ''
-    items = trackResults.map((item, index) => {
-        console.log(item)
-        let avatar = getCoverArt(item.data)
-        let songTitle = item.data.name
-        let artist = getArtist(item.data)
-        let contentRating = item.data.contentRating.label
-        let duration = getDuration(item.data)
-        return  <div>
-                    <ListItem alignItems="flex-start">
-                        <ListItemAvatar>
-                            <Avatar alt="Remy Sharp" src={avatar} />
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary={songTitle}
-                            secondary={
-                                <React.Fragment>
-                                    <p><b>Artist:</b> {artist}</p>
-                                    <p><b>Duration:</b> {duration}</p>
-                                    <p><b>Content Rating:</b> {contentRating}</p>
-                                </React.Fragment>
-                            }
-                        />
-                    </ListItem>
-                    <Divider variant="inset" component="li" />
-                </div>
-    })
+    //for each track return div component of the song
+    const getItems = () => {
+        let items = ''
+        items = trackResults.map((item, index) => {
+            let avatar = getCoverArt(item.data)
+            let songTitle = item.data.name
+            let artist = getArtist(item.data)
+            let contentRating = item.data.contentRating.label
+            let duration = getDuration(item.data)
+            return  <div key={item.data.id}>
+                        <ListItem alignItems="flex-start">
+                            <ListItemAvatar>
+                                <Avatar alt="Remy Sharp" src={avatar} />
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={songTitle}
+                                secondary={
+                                    <React.Fragment>
+                                        <span><b>Artist:</b> {artist} </span><br></br>
+                                        <span><b>Duration:</b> {duration} </span><br></br>
+                                        <span><b>Content Rating:</b> {contentRating} </span>
+                                    </React.Fragment>
+                                }
+                            />
+                        </ListItem>
+                        <Divider variant="inset" component="li" />
+                    </div>
+        })
 
+        return items
+    }
+
+    //return div list of tracks
     return (
-        <div>
-            <h3>Tracks</h3>
-            <List sx={{ width: '100%', bgcolor: 'background.paper' }} style={styles}>
-                {items}
-            </List>
-        </div>
-
+        <List sx={{ width: '100%', bgcolor: 'background.paper' }} style={styles}>
+            {getItems()}
+        </List>
     );
 }

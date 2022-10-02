@@ -11,20 +11,29 @@
  */
 export async function getSpotify(query='', offset=0){
 
-    let query_params = new URLSearchParams();
-    query_params.append('q', query)
-    query_params.append('offset', offset)
-
+    //set default response
     let response = { tracks: {totalCount:0, items:[]}, artists: {totalCount:0, items:[]} }
-    await fetch('/api/spotify/?' + query_params.toString())
-    .then((res) => {
-        if(res.status === 200){
-            response = res.json()
-        }
-    })
-    .catch((error) => {
-        console.log(error);
-    })
+
+    //if query is empty string return default empty response
+    if(query !== ''){ 
+
+        //prep query params
+        let query_params = new URLSearchParams();
+        query_params.append('q', query.toLowerCase());
+        query_params.append('offset', offset);
+
+        //run retch
+        await fetch('/api/spotify/?' + query_params.toString())
+        .then((res) => {
+            if(res.status === 200){
+                response = res.json();
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+
+    }
 
     return response 
 }
